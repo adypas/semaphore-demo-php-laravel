@@ -5,9 +5,12 @@ agent:
     type: e1-standard-2
     os_image: ubuntu2004
 blocks:
-  - name: 'Block #1'
+  - name: 'do-k8 '
     task:
       jobs:
-        - name: 'Job #1'
+        - name: Get nodes
           commands:
             - checkout
+            - kubectl get nodes
+      secrets:
+        - name: do-k8s
