@@ -15,15 +15,12 @@ blocks:
         - name: APP_ENV
           value: prod
       jobs:
-        - name: composer
+        - name: Get nodes
           commands:
             - checkout
-            - cache restore
-            - composer install
-            - npm install
-            - cache store
-            - cp .env.example .env
-            - 'php artisan key:generate'
+            - kubectl get nodes
+      secrets:
+        - name: do-k8s
   - name: Run Code Analysis
     task:
       prologue:
@@ -81,3 +78,5 @@ blocks:
       jobs:
         - name: 'Job #1'
           commands: []
+      secrets:
+        - name: do-k8s
